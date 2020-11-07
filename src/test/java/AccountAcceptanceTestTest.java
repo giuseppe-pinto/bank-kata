@@ -1,11 +1,16 @@
+import domain.Account;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import printer.Console;
+import printer.StatementPrinter;
+import repositories.InMemoryTransactionRepository;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class AccountAcceptanceTestTest
@@ -13,9 +18,15 @@ class AccountAcceptanceTestTest
 
   @Mock
   private Console console;
+  private Account account;
 
-  private final Account account = new Account();
-
+  @BeforeEach
+  void setUp()
+  {
+    account = new Account(new InMemoryTransactionRepository(LocalDate::now), 
+                          new StatementPrinter());
+  }
+  
   @Test
   void featureForBankKata()
   {
