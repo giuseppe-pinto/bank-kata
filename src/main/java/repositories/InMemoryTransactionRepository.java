@@ -3,12 +3,15 @@ package repositories;
 import domain.Transaction;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
+
+import static java.util.Collections.*;
 
 public class InMemoryTransactionRepository implements TransactionRepository
 {
   private Supplier<LocalDate> dateSupplier;
+  private final List<Transaction> transactions = new ArrayList<>();
 
   public InMemoryTransactionRepository(Supplier<LocalDate> dateSupplier)
   {
@@ -18,18 +21,18 @@ public class InMemoryTransactionRepository implements TransactionRepository
   @Override 
   public void addDeposit(int amount)
   {
-    throw new UnsupportedOperationException();
+    transactions.add(new Transaction(dateSupplier.get(), amount));
   }
 
   @Override 
   public void withdrawal(int amount)
   {
-    throw new UnsupportedOperationException();
+    transactions.add(new Transaction(dateSupplier.get(), -amount));
   }
 
   @Override 
   public List<Transaction> allTransactions()
   {
-    throw new UnsupportedOperationException();
+    return unmodifiableList(transactions);
   }
 }
