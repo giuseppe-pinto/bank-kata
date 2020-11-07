@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import printer.Console;
 
@@ -33,11 +33,12 @@ class AccountAcceptanceTestTest
 
     String actualStatement = account.printStatement();
 
-    verify(console).print("Date | Amount | Balance");
-    verify(console).print("24.12.2015 | +500 | 500");
-    verify(console).print("23.08.2016 | -100 | 400");
-    verify(console).print("23.08.2016 | -100 | 300");
-    verify(console).print("27.08.2016 | +50 | 350");
+    InOrder inOrder = Mockito.inOrder(console);
+    inOrder.verify(console).print("Date | Amount | Balance");
+    inOrder.verify(console).print("24.12.2015 | +500 | 500");
+    inOrder.verify(console).print("23.08.2016 | -100 | 400");
+    inOrder.verify(console).print("23.08.2016 | -100 | 300");
+    inOrder.verify(console).print("27.08.2016 | +50 | 350");
 
     assertEquals(expectedStatement, actualStatement);
 
