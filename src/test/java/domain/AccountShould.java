@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Account;
 import domain.Transaction;
 import org.junit.jupiter.api.BeforeEach;
