@@ -26,7 +26,6 @@ class InMemoryTransactionRepositoryTest
   @Test
   void deposit()
   {
-
     transactionRepository.addDeposit(100);
 
     List<Transaction> transactions = transactionRepository.allTransactions();
@@ -46,7 +45,6 @@ class InMemoryTransactionRepositoryTest
     assertEquals(2, transactions.size());
     assertEquals(transaction(dateSupplier.get(), 100), transactions.get(0));
     assertEquals(transaction(dateSupplier.get(), -50), transactions.get(1));
-    
   }
 
   private Transaction transaction(LocalDate localDate, int amount)

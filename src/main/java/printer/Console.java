@@ -2,7 +2,7 @@ package printer;
 
 public class Console
 {
-  public void print(String text)
+  public void printLine(String text)
   {
     throw new UnsupportedOperationException();
   }

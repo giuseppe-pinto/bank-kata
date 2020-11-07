@@ -1,6 +1,7 @@
 package domain;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Transaction
@@ -12,6 +13,21 @@ public class Transaction
   {
     this.localDate = localDate;
     this.amount = amount;
+  }
+
+  public LocalDate getLocalDate()
+  {
+    return localDate;
+  }
+  
+  public String getLocalDateAsString(){
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    return dateTimeFormatter.format(localDate);
+  }
+
+  public int getAmount()
+  {
+    return amount;
   }
 
   @Override public boolean equals(Object o)
