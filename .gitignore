@@ -1,0 +1,8 @@
+# Project exclude paths
+/target/
+**/logs
+**/logs/debug.log
+*.log
+/debug.log
+/.idea/
+/bank-kata.iml
